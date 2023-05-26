@@ -1,0 +1,79 @@
+﻿@model IDGS903_TEMA1.Models.Palabras
+
+@{
+    ViewBag.Title = "Registrar";
+}
+
+<h2>Registrar</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Palabras</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div style="display: flex;">
+    <div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.esp, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.esp, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.esp, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ing, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ing, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ing, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    
+        </div>
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Guardar" class="btn btn-success" />
+            <input type="button" value="Mostrar" class="btn btn-info" onclick="mostrarTabla()" />
+            @Html.ActionLink("Buscar", "Buscar", new { @class = "btn btn-warning" })
+        </div>
+    </div>
+    <div style="float:inherit; margin:10px;">
+    <table id="tablaRegistros" class="table table-bordered" style="display:none;">
+        <thead>
+            <tr>
+                <th>Inglés</th>
+                <th>Español</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Palabras)
+            {
+                <tr>
+                    @foreach (string palabras in item.Split('='))
+                    {
+                        <td>@palabras</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+</div>
+}
+<script>
+    function mostrarTabla() {
+        var tabla = document.getElementById("tablaRegistros");
+        tabla.style.display = "table";
+    }
+</script>
+
+<!--<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+-->

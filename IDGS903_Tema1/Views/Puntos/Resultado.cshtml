@@ -1,0 +1,10 @@
+﻿@model IDGS903_TEMA1.Models.Puntos
+@{
+    ViewBag.Title = "Resultado";
+}
+
+<h2>Resultado</h2>
+<h3>El  resultado de la distancia es:  @Html.DisplayFor(model => Model.res)</h3>
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>

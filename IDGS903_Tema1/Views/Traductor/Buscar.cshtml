@@ -1,0 +1,49 @@
+﻿@model IDGS903_TEMA1.Models.Palabras
+
+@{
+    ViewBag.Title = "Buscar";
+}
+
+<h2>Buscar</h2>
+
+@using (Html.BeginForm("Buscar", "Traductor", FormMethod.Post))
+{
+    <div class="form-group">
+        <label class="control-label col-md-2">Palabra a buscar</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.busqueda, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.busqueda, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Idioma</label>
+        <div class="col-md-10">
+            <input type="radio" name="idioma" value="esp" /> Español
+            <input type="radio" name="idioma" value="ing" /> Inglés
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Buscar" class="btn btn-warning" />
+            <h3>@ViewBag.res</h3>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Registrar", new { @class = "btn btn-danger" })
+</div>
+<script>
+    var radioEsp = document.getElementById("radioEsp");
+    var radioIng = document.getElementById("radioIng");
+
+    radioEsp.addEventListener("click", function () {
+        radioIng.checked = false;
+    });
+
+    radioIng.addEventListener("click", function () {
+        radioEsp.checked = false;
+    });
+</script>

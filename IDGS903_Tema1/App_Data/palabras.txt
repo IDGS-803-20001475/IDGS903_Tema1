@@ -1,0 +1,8 @@
+green=verde
+purple=morado
+ball=pelota
+horse=caballo
+blue=azul
+blue=azul
+blue=azul
+=
